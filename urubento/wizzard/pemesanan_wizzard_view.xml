@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+        <!-- urubento.pemesanan form view -->
+    <record id="pemesanan_view_form_wizzard" model="ir.ui.view">
+        <field name="name">Pemesanan Menu</field>
+        <field name="model">urubento.pemesanan</field>
+        <field name="arch" type="xml">
+            <form string="Form Pemensanan">
+                <group>
+                    <field name="name"/>
+                    <field name="nama_pembeli"/>
+                    <field name="tgl_penjualan"/>
+                    <field name="total_bayar"/>
+                </group>
+                <group name="daftarmenu" string="Daftar Menu">
+                    <field name="detailpemesanan_ids">
+                        <tree editable = 'bottom'>
+                            <field name="menu_id"/>
+                            <field name="harga_satuan"/>
+                            <field name="qty"/>
+                            <field name="subtotal" sum = "Total"/>
+                        </tree>
+                    </field>
+                </group>
+                <footer>
+                    
+                    <button name="button_pesanan" string="Pesan Sekarang" type="object" class = "btn btn-warning" />
+                    <button string="Cancel" special = "cancel" class = "btn btn-danger "/>
+                    
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- urubento.pemesanan action window -->
+    <record id="urubento_pemesanan_action_wizzard" model="ir.actions.act_window">
+        <field name="name">Pemesanan Menu</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">urubento.pemesanan</field>
+        <field name="view_mode">form</field>
+        <!-- <field name="view_id" ref = "pemesanan_view_form_wizzard"/> -->
+        <field name="target">new</field>
+    </record>
+
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem   id="urubento_pemesanan_menu_act_wizzard" 
+                name="Pesan Menu" 
+                parent="urubento_pemesanan_menu_categ" 
+                action="urubento_pemesanan_action_wizzard" 
+                sequence="10"/>
+</odoo>

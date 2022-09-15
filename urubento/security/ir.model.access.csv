@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_urubento_bahan,access.urubento.bahan,model_urubento_bahan,,1,1,1,1
+access_urubento_menu,access.urubento.menu,model_urubento_menu,,1,1,1,1
+access_urubento_pemesanan,access.urubento.pemesanan,model_urubento_pemesanan,,1,1,1,1
+access_urubento_detailpemesanan,access.urubento.detailpemesanan,model_urubento_detailpemesanan,,1,1,1,1
+
+

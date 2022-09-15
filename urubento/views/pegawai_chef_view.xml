@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <!-- res.partner inherit tree view -->
+    <record id="res_partner_chef_view_tree_inherit" model="ir.ui.view">
+        <field name="name">Daftar Chef</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='vat']" position="after">
+                <field name="tipe_pegawai"/>
+            </xpath>
+            <xpath expr="//field[@name='function']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <!-- <xpath expr="//field[@name='website']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath> -->
+            <!-- <xpath expr="//field[@name='title']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath> -->
+            <!-- <xpath expr="//field[@name='category_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath> -->
+
+        </field>
+    </record>
+
+    <!-- res.partner inherit search view -->
+    <record id="res_partner_chef_inherit_search" model="ir.ui.view">
+        <field name="name">res.partner.inherit.view.search</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter"/>
+        <field name="arch" type="xml">
+            <field name="parent_id" position = 'after'>
+                <filter name="chef" string="chef" domain="[('tipe_pegawai', '=', 'chef')]" />
+            </field>
+        </field>
+    </record>
+
+    <!-- res.partner inherit form view -->
+    <record id="res_partner_chef_view_form_inherit" model="ir.ui.view">
+        <field name="name">Form Chef</field>
+        <field name="model">res.partner</field>
+        <field name="mode">extension</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='vat']" position="after">
+                <field name="tipe_pegawai"/>
+            </xpath>
+            <xpath expr="//field[@name='function']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            
+        </field>
+    </record>
+
+    <!-- res.partner action window -->
+    <record id="res_partner_chef_action" model="ir.actions.act_window">
+        <field name="name">Chef</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="context">
+            {
+                'search_default_chef':'chef',
+                'default_tipe_pegawai':'chef'
+            }
+        </field>
+    </record>
+    
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem   id="urubento_chef_menu_act" 
+                name="Chef" 
+                parent="urubento_pegawai_menu_categ" 
+                action="res_partner_chef_action" 
+                sequence="10"/>
+</odoo>
